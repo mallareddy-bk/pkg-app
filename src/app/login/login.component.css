@@ -1,0 +1,13 @@
+.center {
+    position: absolute;
+    top: 50%;
+    /*half of the modal height*/
+    margin-top: -100px;
+    left: 50%;
+    /*half of the modal width*/
+    margin-left: -180px;
+  }
+
+  .buttonMargin {
+      margin-top: 20px;
+  }
