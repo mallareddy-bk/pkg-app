@@ -5,14 +5,17 @@
       <br/>
       <small class="text-danger"><b>{{msg}}</b></small>
       <br/>
-      <b> Employee ID : </b><input type="text" name="username" [(ngModel)]="username">
+      <b> Employee ID : </b><input type="text" name="empId" [(ngModel)]="empId" required #employeeId="ngModel"
+      >
+      <small *ngIf="employeeId.invalid && employeeId.touched" class="text-danger"><b>Employee ID is required.</b></small>
       <br/><br/>
-      <b> Password : </b><input type="password" style="margin-left: 25px;" name="password" [(ngModel)]="password">
+      <b> Password : </b><input type="password" style="margin-left: 25px;" name="password" [(ngModel)]="password" required #pwd="ngModel">
+      <small *ngIf="pwd.invalid && pwd.touched" class="text-danger"><b>Password is required.</b></small>
       <small id="passwordHelpInline" class="text-muted">
         Must be 8-20 characters long.
       </small>
       <br/><br/>
-      <button style="margin-left: 230px;" class="btn btn-success">
+      <button style="margin-left: 230px;" class="btn btn-success" [disabled]="pwd.invalid || employeeId.invalid">
         Login
       </button>
     </div>

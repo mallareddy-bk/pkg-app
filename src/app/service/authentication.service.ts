@@ -30,6 +30,11 @@ export class AuthenticationService {
     return !(user === null)
   }
 
+  isManager() {
+    let designation = sessionStorage.getItem('designation')
+    return (designation === 'Manager')
+  }
+
   logOut() {
     sessionStorage.removeItem('username')
   }

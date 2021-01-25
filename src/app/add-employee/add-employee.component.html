@@ -1,9 +1,11 @@
 <div class="center">
   <h2 class="text-center">Add New Employee</h2>
-  <form >
+  <form #loginForm="ngForm" (ngSubmit)="createEmployee()">
+        
     <div class="form-group">
       <label for="name" class="label">Name:</label>
-      <input type="name" [(ngModel)]="user.name" placeholder="Name" name="name" class="form-control" id="name">
+      <input type="name" [(ngModel)]="user.name" placeholder="Name" name="name" class="form-control" id="name" required #empName="ngModel">
+      <small *ngIf="empName.invalid && empName.touched" class="text-danger"><b>Name is required.</b></small>
     </div>
 
    <div class="form-group">
@@ -16,22 +18,26 @@
   
     <div class="form-group">
       <label for="empId" class="label">Employee ID</label>
-      <input [(ngModel)]="user.empId" placeholder="Employee ID" name="Employee ID" class="form-control" id="employeeid">
+      <input [(ngModel)]="user.empId" placeholder="Employee ID" name="Employee ID" class="form-control" id="employeeid" required #empId="ngModel">
+      <small *ngIf="empId.invalid && empId.touched" class="text-danger"><b>Employee ID required.</b></small>
     </div>
 
     <div class="form-group">
       <label for="emailId" class="label">Email ID</label>
-      <input [(ngModel)]="user.emailId" placeholder="Email ID" name="Email ID" class="form-control" id="emailid">
+      <input [(ngModel)]="user.emailId" placeholder="Email ID" name="Email ID" class="form-control" id="emailid" required #emailId="ngModel">
+      <small *ngIf="emailId.invalid && emailId.touched" class="text-danger"><b>Email ID required.</b></small>
     </div>
 
     <div class="form-group">
       <label for="address" class="label">Address</label>
-      <input [(ngModel)]="user.address" placeholder="Address" name="Address" class="form-control" id="address">
+      <input [(ngModel)]="user.address" placeholder="Address" name="Address" class="form-control" id="address" required #addr="ngModel">
+      <small *ngIf="addr.invalid && addr.touched" class="text-danger"><b>Address required.</b></small>
     </div>
 
     <div class="form-group">
       <label for="identityNo" class="label">Identity No</label>
-      <input [(ngModel)]="user.identityNo" placeholder="Identity No" name="Identity No" class="form-control" id="identityNo">
+      <input [(ngModel)]="user.identityNo" placeholder="Identity No" name="Identity No" class="form-control" id="identityNo" required #idNo="ngModel"> 
+      <small *ngIf="idNo.invalid && idNo.touched" class="text-danger"><b>Identity No required.</b></small>
     </div>
     
     <div class="form-group">
@@ -44,9 +50,12 @@
 
     <div class="form-group">
       <label for="identityNo" class="label">Phone No</label>
-      <input [(ngModel)]="user.phoneNumber" placeholder="Phone No" name="Phone No" class="form-control" id="phoneNumber">
+      <input [(ngModel)]="user.phoneNumber" placeholder="Phone No" name="Phone No" class="form-control" id="phoneNumber" required #phNo="ngModel">
+      <small *ngIf="phNo.invalid && phNo.touched" class="text-danger"><b>Phone No required.</b></small>
     </div>
 
-    <button class="btn btn-success" (click)="createEmployee()">Create</button>
+    <button class="btn btn-success">Create</button>
+    <small class="text-danger" style="padding-left: 20px;"><b>{{errMsg}}</b></small>
+    <small class="text-success" style="padding-left: 20px;"><b>{{successMsg}}</b></small>
   </form>
   </div>

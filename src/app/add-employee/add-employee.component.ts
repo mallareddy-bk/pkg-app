@@ -15,6 +15,9 @@ export class AddEmployeeComponent implements OnInit {
 
   Gender: any = ['Male', 'Female'];
   
+  successMsg=''
+
+  errMsg=''
 
   constructor(
     private httpClientService: HttpClientService
@@ -24,10 +27,17 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   createEmployee(): void {
+    this.errMsg='';
+    this.successMsg='';
     this.httpClientService.createEmployee(this.user)
         .subscribe( data => {
-          alert("Employee created successfully.");
-        });
+          console.log("Registration Success!");
+          this.successMsg='New employee added successfully.';
+        },
+        error => {
+           this.errMsg='Employee already existed with email ID: ' + this.user.emailId;
+        }
+      );
 
   };
 

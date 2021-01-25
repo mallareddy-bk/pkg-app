@@ -49,8 +49,8 @@ export class HttpClientService {
     return this.httpClient.post<Employee>("http://localhost:8080/employees", employee);
   }
 
-    public login(username, password):Observable<any> {
-      let employee: Employee = new Employee(username, "", "", "", "", "", "", "", password);
+    public login(empId, password):Observable<any> {
+      let employee: Employee = new Employee(empId, "", "", "", "", "", "", "", password);
       return this.httpClient.post<any>("http://localhost:8080/employees/login/", employee);
   }
 

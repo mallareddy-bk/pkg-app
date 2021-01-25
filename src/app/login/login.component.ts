@@ -11,7 +11,7 @@ import { HttpClientService } from '../service/httpclient.service';
 
 export class LoginComponent implements OnInit {
 
-  username = ''
+  empId = ''
   password = ''
   invalidLogin = false
   msg = ''
@@ -25,12 +25,13 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    this.httpClientService.login(this.username, this.password).subscribe(
+    this.httpClientService.login(this.empId, this.password).subscribe(
       data => {
         console.log("Login Success!");
-        this.router.navigate(['/viewemployee'])
+        this.router.navigate(['/loginSuccess'])
         this.invalidLogin = false
-        sessionStorage.setItem('username', this.username)
+        sessionStorage.setItem('username', this.empId)
+        sessionStorage.setItem('designation', data.designation)
       },
       error => {
         this.invalidLogin = true
