@@ -1,16 +1,20 @@
 <div class="container">
-  <div class="center">
-    <output><b style="color: darkorange;">Please enter the below details to login.</b></output>
-    <br/><br/>
-    <b> Employee ID : </b><input type="text" name="username" [(ngModel)]="username">
-    <br/><br/>
-    <b> Password : </b><input type="password" style="margin-left: 25px;" name="password" [(ngModel)]="password">
-    <small id="passwordHelpInline" class="text-muted">
-      Must be 8-20 characters long.
-    </small>
-    <br/><br/>
-    <button style="margin-left: 230px;" (click)=checkLogin() class="btn btn-success">
-      Login
-    </button>
-  </div>
+  <form #loginForm="ngForm" (ngSubmit)="checkLogin()">
+    <div class="center">
+      <output><b style="color: darkorange;">Please enter the below details to login.</b></output>
+      <br/>
+      <small class="text-danger"><b>{{msg}}</b></small>
+      <br/>
+      <b> Employee ID : </b><input type="text" name="username" [(ngModel)]="username">
+      <br/><br/>
+      <b> Password : </b><input type="password" style="margin-left: 25px;" name="password" [(ngModel)]="password">
+      <small id="passwordHelpInline" class="text-muted">
+        Must be 8-20 characters long.
+      </small>
+      <br/><br/>
+      <button style="margin-left: 230px;" class="btn btn-success">
+        Login
+      </button>
+    </div>
+</form>
 </div>

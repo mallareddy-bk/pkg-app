@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { EmployeeComponent } from '../employee/employee.component';
+import { Observable } from 'rxjs';
 
 export class Employee{
   constructor(
@@ -11,6 +14,7 @@ export class Employee{
     public identityNo:string,
     public gender:string,
     public phoneNumber:string,
+    public password:string,
   ) {}
 }
 
@@ -45,7 +49,14 @@ export class HttpClientService {
     return this.httpClient.post<Employee>("http://localhost:8080/employees", employee);
   }
 
+    public login(username, password):Observable<any> {
+      let employee: Employee = new Employee(username, "", "", "", "", "", "", "", password);
+      return this.httpClient.post<any>("http://localhost:8080/employees/login/", employee);
+  }
 
+  createBasicAuthToken(username: String, password: String) {
+    return 'Basic ' + window.btoa(username + ":" + password)
+  }
 
 getHeaders(){
   let username='admin'

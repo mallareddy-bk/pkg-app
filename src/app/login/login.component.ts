@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
+import { HttpClientService } from '../service/httpclient.service';
 
 @Component({
   selector: 'app-login',
@@ -13,20 +14,30 @@ export class LoginComponent implements OnInit {
   username = ''
   password = ''
   invalidLogin = false
+  msg = ''
+  
 
   constructor(private router: Router,
-    private loginservice: AuthenticationService) { }
+    private loginservice: AuthenticationService,
+    private httpClientService:HttpClientService) { }
 
   ngOnInit() {
   }
 
   checkLogin() {
-    if (this.loginservice.authenticate(this.username, this.password)
-    ) {
-      this.router.navigate(['/viewemployee'])
-      this.invalidLogin = false
-    } else
-      this.invalidLogin = true
+    this.httpClientService.login(this.username, this.password).subscribe(
+      data => {
+        console.log("Login Success!");
+        this.router.navigate(['/viewemployee'])
+        this.invalidLogin = false
+        sessionStorage.setItem('username', this.username)
+      },
+      error => {
+        this.invalidLogin = true
+        this.msg='Invalid Employee ID or Password.';
+      }
+    );
+  
   }
 
 }
