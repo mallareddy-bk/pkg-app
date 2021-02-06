@@ -3,8 +3,9 @@
   <div><a href="https://www.paramountkleengroup.com.au/" class="navbar-brand">Paramount Kleen Group</a></div>
   
   <ul class="navbar-nav">
-    <li><a *ngIf="loginService.isUserLoggedIn() && loginService.isManager()" routerLink="/viewemployee" class="nav-link">View Employees</a></li>
-    <li><a *ngIf="loginService.isUserLoggedIn() && loginService.isManager()" routerLink="/addemployee" class="nav-link">Add New Employee</a></li>
+    <li><a *ngIf="loginService.isUserLoggedIn() && loginService.isManagerOrSupervisor()" routerLink="/viewemployee" class="nav-link">View Employees</a></li>
+    <li><a *ngIf="loginService.isUserLoggedIn() && loginService.isManagerOrSupervisor()" routerLink="/addemployee" class="nav-link">Add New Employee</a></li>
+    <li><a *ngIf="loginService.isUserLoggedIn() && loginService.isHouseman()" routerLink="/timesheet" class="nav-link">Timesheet</a></li>
     <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
     <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
   

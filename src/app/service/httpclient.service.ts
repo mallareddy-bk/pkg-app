@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { EmployeeComponent } from '../employee/employee.component';
 import { Observable } from 'rxjs';
+import { State, TimesheetData } from '../timesheet/timesheet.component';
 
 export class Employee{
   constructor(
@@ -52,6 +53,14 @@ export class HttpClientService {
     public login(empId, password):Observable<any> {
       let employee: Employee = new Employee(empId, "", "", "", "", "", "", "", password);
       return this.httpClient.post<any>("http://localhost:8080/employees/login/", employee);
+  }
+
+  public getStates(countryName):Observable<any> {
+    return this.httpClient.post<any>('http://localhost:8080/state/states', countryName);
+  }
+
+  public submitTimesheet(timesheetData) {
+    return this.httpClient.post<TimesheetData>('http://localhost:8080/timesheet/submit', timesheetData);
   }
 
   createBasicAuthToken(username: String, password: String) {

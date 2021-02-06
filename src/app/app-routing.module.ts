@@ -6,12 +6,14 @@ import { EmployeeComponent } from './employee/employee.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { AuthGaurdService } from './service/auth-guard.service';
 import { LoginSuccessComponent } from './login-success/login-success.component';
+import { TimesheetComponent } from './timesheet/timesheet.component';
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent,canActivate:[AuthGaurdService]  },
   { path: 'viewemployee', component: EmployeeComponent,canActivate:[AuthGaurdService] },
   { path: 'addemployee', component: AddEmployeeComponent,canActivate:[AuthGaurdService] },
-  { path: 'loginSuccess', component: LoginSuccessComponent,canActivate:[AuthGaurdService] },];
+  { path: 'loginSuccess', component: LoginSuccessComponent,canActivate:[AuthGaurdService] },
+  { path: 'timesheet', component: TimesheetComponent,canActivate:[AuthGaurdService] },];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

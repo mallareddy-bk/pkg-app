@@ -1,0 +1,60 @@
+<div class="center">
+    <h2 class="text-center">Timesheet</h2><br/>
+    <form #timesheetForm="ngForm" (ngSubmit)="submitTimesheet()">
+          
+    <div class="form-group">
+      <label for="state" class="label">Date:</label><br/>
+      <input matInput name="date" [(ngModel)]="timesheetData.selectedDate" [matDatepicker]="picker" placeholder="Choose a date" required #date="ngModel">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <small *ngIf="date.invalid && date.touched" class="text-danger"><b>Date required.</b></small>
+    </div>
+
+    <div class="form-group">
+     <label for="country" class="label">Country:</label>
+     <select class="custom-select" (change)="changeCountry($event)">
+        <option value="">Choose Countey</option>
+        <option *ngFor="let country of Country" [ngValue]="country">{{country}}</option>
+     </select>
+    </div>  
+  
+     <div class="form-group">
+      <label for="state" class="label">State:</label>
+      <select class="custom-select" name="stateName" [(ngModel)]="timesheetData.selectedState" (change)="changeState($event)">
+        <option value="">Choose State</option>
+        <option *ngFor="let state of states" [ngValue]="state">{{state.stateName}}</option>
+      </select>
+    </div>  
+
+    <div class="form-group">
+      <label for="hotel" class="label">Hotel:</label>
+      <select class="custom-select" name="hotelName" [(ngModel)]="timesheetData.selectedHotel" (change)="changeHotel($event)">
+        <option value="">Choose Hotel</option>
+        <option *ngFor="let hotel of hotels" [ngValue]="hotel">{{hotel.hotelName}}</option>
+      </select>
+    </div>  
+    
+    <div class="form-group">
+      <label for="room" class="label">Room:</label>
+      <select class="custom-select" name="roomName" [(ngModel)]="timesheetData.selectedRoom" (change)="changeRoom($event)">
+        <option value="">Choose Room</option>
+        <option *ngFor="let room of rooms" [ngValue]="room">{{room.roomNo}}</option>
+      </select>
+    </div>  
+
+    <div class="form-group">
+      <label for="service" class="label">Service:</label>
+      <select class="custom-select" name="serviceName" [(ngModel)]="timesheetData.selectedService" >
+        <option value="">Choose Service</option>
+        <option *ngFor="let service of services" [ngValue]="service">{{service.roomCatName}}</option>
+      </select>
+    </div>  
+      
+    <div>
+
+      <small class="text-danger" style="padding-bottom: 20px;"><b>{{errMsg}}</b></small>
+      <small class="text-success" style="padding-bottom: 20px;"><b>{{successMsg}}</b></small>
+    </div>
+      <button class="btn btn-success">Submit</button>
+    </form>
+    </div>

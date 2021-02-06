@@ -1,0 +1,14 @@
+.label {
+    font-weight: bold;
+    color: orange;
+    }
+
+    .center {
+        position: absolute;
+        top: 20%;
+        /*half of the modal height*/
+        margin-top: -50px;
+        left: 50%;
+        /*half of the modal width*/
+        margin-left: -180px;
+      }

@@ -42,7 +42,7 @@
     
     <div class="form-group">
       <label for="designation" class="label">Gender:</label>
-      <select class="custom-select" (change)="changeGender($event)">
+      <select class="custom-select" (change)="changeGender($event)" required>
         <option value="">Choose employee gender</option>
         <option *ngFor="let gender of Gender" [ngValue]="gender">{{gender}}</option>
       </select>
@@ -54,7 +54,7 @@
       <small *ngIf="phNo.invalid && phNo.touched" class="text-danger"><b>Phone No required.</b></small>
     </div>
 
-    <button class="btn btn-success">Create</button>
+    <button class="btn btn-success" [disabled]="phNo.invalid || idNo.invalid || addr.invalid || empName.invalid || empId.invalid || emailId.invalid">Create</button>
     <small class="text-danger" style="padding-left: 20px;"><b>{{errMsg}}</b></small>
     <small class="text-success" style="padding-left: 20px;"><b>{{successMsg}}</b></small>
   </form>
