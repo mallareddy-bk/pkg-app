@@ -63,6 +63,18 @@ export class HttpClientService {
     return this.httpClient.post<TimesheetData>('http://localhost:8080/timesheet/submit', timesheetData);
   }
 
+  public getPendingTaskList() {
+    return this.httpClient.get<any[]>('http://localhost:8080/timesheet/tasklist');
+  }
+
+  public approve(periodicElement) {
+    return this.httpClient.post<any[]>('http://localhost:8080/timesheet/approve', periodicElement);
+  }
+
+  public reject(periodicElement) {
+    return this.httpClient.post<any[]>('http://localhost:8080/timesheet/reject', periodicElement);
+  }
+
   createBasicAuthToken(username: String, password: String) {
     return 'Basic ' + window.btoa(username + ":" + password)
   }

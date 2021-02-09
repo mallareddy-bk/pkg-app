@@ -1,0 +1,43 @@
+<mat-table #table [dataSource]="dataSource">
+    
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef style="background-color: orange; font-weight: bold;"> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="empId">
+      <mat-header-cell *matHeaderCellDef style="background-color: orange; font-weight: bold;"> Employee ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.empId}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="hotelName">
+      <mat-header-cell *matHeaderCellDef style="background-color: orange; font-weight: bold;"> Hotel </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.hotelName}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="roomNo">
+      <mat-header-cell *matHeaderCellDef style="background-color: orange; font-weight: bold;"> Room </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.roomNo}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="serviceName">
+      <mat-header-cell *matHeaderCellDef style="background-color: orange; font-weight: bold;"> Service </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.serviceName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef style="background-color: orange; font-weight: bold;"> Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef style="background-color: orange; font-weight: bold;"> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        <button mat-raised-button color="primary" (click)="approve(element)">Approve</button>    
+        <button mat-raised-button color="warn" style="margin-left: 10px;" (click)="reject(element)">Reject</button>   
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

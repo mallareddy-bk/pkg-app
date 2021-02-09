@@ -35,7 +35,13 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.invalidLogin = true
-        this.msg='Invalid Employee ID or Password.';
+        if (error.statusText == 'OK') {
+          this.msg='Invalid Employee ID or Password.';
+        } else {
+          this.msg='System error, please try again later';
+        }
+        
+        
       }
     );
   

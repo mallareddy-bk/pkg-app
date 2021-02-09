@@ -12,8 +12,10 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginSuccessComponent } from './login-success/login-success.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
-import { MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
+import { MatButtonModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TasklistComponent } from './tasklist/tasklist.component';
+import { ViewtaskComponent } from './viewtask/viewtask.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EmployeeComponent,
     AddEmployeeComponent,
     LoginSuccessComponent,
-    TimesheetComponent
+    TimesheetComponent,
+    TasklistComponent,
+    ViewtaskComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

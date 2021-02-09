@@ -38,6 +38,7 @@ export class TimesheetComponent implements OnInit {
   successMsg=''
   errMsg=''
   timesheetData: TimesheetData = new TimesheetData("","","","","","","");
+  maxDate = new Date();
 
   constructor( private httpClientService: HttpClientService) { 
 
@@ -84,6 +85,9 @@ export class TimesheetComponent implements OnInit {
     this.httpClientService.submitTimesheet(this.timesheetData).subscribe( data => {
       console.log("Timesheet Success!");
       this.successMsg='Timesheet submitted successfully.';
+      this.timesheetData = new TimesheetData("Australia","","","","","","");
+      
+
     },
     error => {
       console.log("Timesheet Failed!");

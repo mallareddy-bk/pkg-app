@@ -35,7 +35,7 @@ export class AddEmployeeComponent implements OnInit {
           this.successMsg='New employee added successfully.';
         },
         error => {
-           this.errMsg='Employee already existed with email ID: ' + this.user.emailId;
+           this.errMsg='Please enter all the mandatory fields';
         }
       );
 

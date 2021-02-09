@@ -4,10 +4,10 @@
           
     <div class="form-group">
       <label for="state" class="label">Date:</label><br/>
-      <input matInput name="date" [(ngModel)]="timesheetData.selectedDate" [matDatepicker]="picker" placeholder="Choose a date" required #date="ngModel">
+      <input matInput name="date" [(ngModel)]="timesheetData.selectedDate" [matDatepicker]="picker" [max]="maxDate" placeholder="Choose a date" required #date="ngModel">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <small *ngIf="date.invalid && date.touched" class="text-danger"><b>Date required.</b></small>
+      <!--<small *ngIf="date.invalid && date.touched" class="text-danger"><b>Date required.</b></small>-->
     </div>
 
     <div class="form-group">

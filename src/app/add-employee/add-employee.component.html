@@ -53,7 +53,7 @@
       <input [(ngModel)]="user.phoneNumber" placeholder="Phone No" name="Phone No" class="form-control" id="phoneNumber" required #phNo="ngModel">
       <small *ngIf="phNo.invalid && phNo.touched" class="text-danger"><b>Phone No required.</b></small>
     </div>
-
+    
     <button class="btn btn-success" [disabled]="phNo.invalid || idNo.invalid || addr.invalid || empName.invalid || empId.invalid || emailId.invalid">Create</button>
     <small class="text-danger" style="padding-left: 20px;"><b>{{errMsg}}</b></small>
     <small class="text-success" style="padding-left: 20px;"><b>{{successMsg}}</b></small>
