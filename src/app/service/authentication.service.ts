@@ -32,7 +32,7 @@ export class AuthenticationService {
 
   isManagerOrSupervisor() {
     let designation = sessionStorage.getItem('designation')
-    return (designation === 'Manager' || designation === 'Supervisor')
+    return (designation === 'Manager' || designation === 'Supervisor' || designation === 'Admin')
   }
 
   isHouseman() {

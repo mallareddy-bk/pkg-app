@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
 import { HttpClientService } from '../service/httpclient.service';
 
 export interface PeriodicElement {
@@ -27,9 +28,14 @@ export class TasklistComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   constructor(private router: Router,
     private httpClientService: HttpClientService,
+    private authService: AuthenticationService,
     private changeDetectorRefs: ChangeDetectorRef) { }
   
   ngOnInit() {
+    if (!this.authService.isManagerOrSupervisor()) {
+      this.authService.logOut();
+      this.router.navigate(['login']);
+    }
     this.getPendingApprovalTaskList();
   }
 

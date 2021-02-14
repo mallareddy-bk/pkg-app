@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
 import { HttpClientService } from '../service/httpclient.service';
 
 export class State {
@@ -40,12 +42,17 @@ export class TimesheetComponent implements OnInit {
   timesheetData: TimesheetData = new TimesheetData("","","","","","","");
   maxDate = new Date();
 
-  constructor( private httpClientService: HttpClientService) { 
+  constructor( private httpClientService: HttpClientService,
+    private authService: AuthenticationService,
+    private router: Router) { 
 
   }
 
   ngOnInit() {
-   
+    if (this.authService.isManagerOrSupervisor()) {
+      this.authService.logOut();
+      this.router.navigate(['login']);
+    }
   }
 
   changeCountry(e) {
@@ -80,6 +87,8 @@ export class TimesheetComponent implements OnInit {
   }
 
   submitTimesheet() {
+    this.errMsg='';
+    this.successMsg='';
     console.log("Submit timesheet started" + this.timesheetData);
     this.timesheetData.empId = sessionStorage.getItem('username');
     this.httpClientService.submitTimesheet(this.timesheetData).subscribe( data => {

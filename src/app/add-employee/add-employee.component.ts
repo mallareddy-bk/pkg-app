@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
 import { HttpClientService, Employee } from '../service/httpclient.service';
 
 @Component({
@@ -20,10 +22,16 @@ export class AddEmployeeComponent implements OnInit {
   errMsg=''
 
   constructor(
-    private httpClientService: HttpClientService
+    private httpClientService: HttpClientService,
+    private authService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    if (!this.authService.isManagerOrSupervisor()) {
+      this.authService.logOut();
+      this.router.navigate(['login']);
+    }
   }
 
   createEmployee(): void {

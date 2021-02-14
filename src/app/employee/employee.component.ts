@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
 import { HttpClientService, Employee } from '../service/httpclient.service';
 
 @Component({
@@ -12,11 +14,18 @@ export class EmployeeComponent implements OnInit {
     
    
   constructor(
-    private httpClientService:HttpClientService
+    private httpClientService:HttpClientService,
+    private authService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-     this.httpClientService.getEmployees().subscribe(
+      if (!this.authService.isManagerOrSupervisor()) {
+        this.authService.logOut();
+        this.router.navigate(['login']);
+      }
+
+      this.httpClientService.getEmployees().subscribe(
       response =>this.handleSuccessfulResponse(response),
      );
   }
